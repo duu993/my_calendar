@@ -1,0 +1,82 @@
+/* 기본 바탕색: 버터색 */
+#calendar-container {
+    font-family: Arial, sans-serif;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    background-color: #FFFDD0; /* 버터색 (Cream/Butter) */
+    width: 100%;
+    max-width: 350px;
+    margin: 0 auto;
+}
+
+/* 달력 헤더 */
+#calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+#calendar-header button {
+    background: none;
+    border: none;
+    font-size: 1.2em;
+    cursor: pointer;
+    color: #333;
+}
+
+/* 달력 그리드 */
+#calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 2px;
+}
+
+/* 각 칸 (날짜 셀) 기본: 하늘색 */
+.day-cell {
+    background-color: #B0E0E6; /* 하늘색 (Powder Blue) */
+    height: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 5px 0;
+    font-size: 0.9em;
+    border-radius: 4px;
+    position: relative;
+}
+
+/* 요일 헤더 */
+.day-name {
+    text-align: center;
+    font-weight: bold;
+    padding: 5px 0;
+    color: #000;
+    font-size: 0.8em;
+}
+
+/* 오늘 날짜: 진한 하늘색 */
+.today {
+    background-color: #87CEEB; /* 진한 하늘색 (Sky Blue) */
+    font-weight: bold;
+    color: #333;
+    border: 2px solid #00BFFF;
+}
+
+/* 이번 달이 아닌 날짜 */
+.other-month {
+    opacity: 0.5;
+    background-color: #D3D3D3; /* 회색으로 처리 */
+}
+
+/* 중요한 일정: 핑크색 하트 표시 */
+.event-heart {
+    font-size: 0.8em;
+    color: #FF69B4; /* 핑크색 (Deep Pink) */
+    position: absolute;
+    bottom: 2px;
+    line-height: 1;
+}

@@ -4,7 +4,7 @@
     padding: 15px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    background-color: #FFFDD0; /* 버터색 (Cream/Butter) */
+    background-color: FFFCE0; /* 버터색 (Cream/Butter) */
     width: 100%;
     max-width: 350px;
     margin: 0 auto;
@@ -37,7 +37,7 @@
 
 /* 각 칸 (날짜 셀) 기본: 하늘색 */
 .day-cell {
-    background-color: #B0E0E6; /* 하늘색 (Powder Blue) */
+    background-color: DCEFFF; /* 하늘색 (Powder Blue) */
     height: 40px;
     display: flex;
     flex-direction: column;
@@ -60,7 +60,7 @@
 
 /* 오늘 날짜: 진한 하늘색 */
 .today {
-    background-color: #87CEEB; /* 진한 하늘색 (Sky Blue) */
+    background-color: BDDAF3; /* 진한 하늘색 (Sky Blue) */
     font-weight: bold;
     color: #333;
     border: 2px solid #00BFFF;

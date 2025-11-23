@@ -35,9 +35,9 @@
     gap: 2px;
 }
 
-/* 각 칸 (날짜 셀) 기본: 하늘색 */
+/* 각 칸 (날짜 셀) 기본: 흰색 */
 .day-cell {
-    background-color: DCEFFF; /* 하늘색 (Powder Blue) */
+    background-color: FFFFFF; /* 흰색 (White) */
     height: 40px;
     display: flex;
     flex-direction: column;
@@ -58,9 +58,9 @@
     font-size: 0.8em;
 }
 
-/* 오늘 날짜: 진한 하늘색 */
+/* 오늘 날짜:하늘색*/
 .today {
-    background-color: BDDAF3; /* 진한 하늘색 (Sky Blue) */
+    background-color: E9F5FF; /* 하늘색 (powder Blue) */
     font-weight: bold;
     color: #333;
     border: 2px solid #00BFFF;
@@ -70,13 +70,4 @@
 .other-month {
     opacity: 0.5;
     background-color: #D3D3D3; /* 회색으로 처리 */
-}
-
-/* 중요한 일정: 핑크색 하트 표시 */
-.event-heart {
-    font-size: 0.8em;
-    color: #FF69B4; /* 핑크색 (Deep Pink) */
-    position: absolute;
-    bottom: 2px;
-    line-height: 1;
 }

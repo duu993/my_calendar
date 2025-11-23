@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>미니 달력</title>
+    <link rel="stylesheet" href="style.css"> 
+</head>
+<body>
+
+<div id="calendar-container">
+    <div id="calendar-header">
+        <button id="prev-month">&lt;</button>
+        <span id="month-year"></span>
+        <button id="next-month">&gt;</button>
+    </div>
+    <div id="calendar-grid">
+        <div class="day-name">일</div>
+        <div class="day-name">월</div>
+        <div class="day-name">화</div>
+        <div class="day-name">수</div>
+        <div class="day-name">목</div>
+        <div class="day-name">금</div>
+        <div class="day-name">토</div>
+        </div>
+</div>
+
+<script>
+    const calendarGrid = document.getElementById('calendar-grid');
+    const monthYearSpan = document.getElementById('month-year');
+    const prevMonthBtn = document.getElementById('prev-month');
+    const nextMonthBtn = document.getElementById('next-month');
+
+    // ★★★ 여기에 중요한 일정 날짜를 'YYYY-MM-DD' 형식으로 추가하세요 ★★★
+    const importantDates = [
+        "2025-11-05", // 예시 일정
+        "2025-11-15",
+        "2025-12-25" 
+    ];
+
+    let currentDate = new Date();
+
+    function renderCalendar() {
+        // 기존 요일 헤더를 제외하고 날짜 셀만 초기화
+        const dayNames = calendarGrid.querySelectorAll('.day-name');
+        while(calendarGrid.children.length > dayNames.length) {
+            calendarGrid.removeChild(calendarGrid.lastChild);
+        }
+
+        const year = currentDate.getFullYear();
+        const month = currentDate.getMonth(); 
+        const today = new Date(); 
+
+        // 1. 헤더 업데이트
+        const monthNames = ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"];
+        monthYearSpan.textContent = `${year}년 ${monthNames[month]}`;
+
+        // 2. 달력 데이터 계산
+        const firstDayOfMonth = new Date(year, month, 1);
+        const lastDayOfPrevMonth = new Date(year, month, 0);
+        const lastDateOfThisMonth = new Date(year, month + 1, 0).getDate();
+        const startDayOfWeek = firstDayOfMonth.getDay(); 
+
+        // 3. 달력 셀 채우기
+        let date = 1;
+        let prevDate = lastDayOfPrevMonth.getDate() - startDayOfWeek + 1;
+        let nextDate = 1;
+
+        for (let i = 0; i < 6 * 7; i++) {
+            const dayCell = document.createElement('div');
+            dayCell.classList.add('day-cell');
+            
+            let displayDate, cellDate;
+            let isThisMonth = false;
+
+            if (i < startDayOfWeek) {
+                // 이전 달 날짜
+                displayDate = prevDate;
+                cellDate = new Date(year, month - 1, displayDate);
+                dayCell.classList.add('other-month');
+                prevDate++;
+            } else if (date <= lastDateOfThisMonth) {
+                // 이번 달 날짜
+                displayDate = date;
+                cellDate = new Date(year, month, displayDate);
+                isThisMonth = true;
+                date++;
+            } else {
+                // 다음 달 날짜
+                displayDate = nextDate;
+                cellDate = new Date(year, month + 1, displayDate);
+                dayCell.classList.add('other-month');
+                nextDate++;
+            }
+            
+            dayCell.textContent = displayDate;
+
+            // '오늘 날짜' 강조
+            if (isThisMonth && 
+                cellDate.getDate() === today.getDate() && 
+                cellDate.getMonth() === today.getMonth() && 
+                cellDate.getFullYear() === today.getFullYear()) {
+                dayCell.classList.add('today');
+            }
+
+            // '중요한 일정' 표시 (핑크색 하트)
+            const dateString = `${cellDate.getFullYear()}-${String(cellDate.getMonth() + 1).padStart(2, '0')}-${String(cellDate.getDate()).padStart(2, '0')}`;
+            if (importantDates.includes(dateString)) {
+                const heart = document.createElement('span');
+                heart.classList.add('event-heart');
+                heart.textContent = '❤️';
+                dayCell.appendChild(heart);
+            }
+            
+            calendarGrid.appendChild(dayCell);
+            
+            if (i >= startDayOfWeek && date > lastDateOfThisMonth && (i % 7) == 6) {
+                break;
+            }
+        }
+    }
+
+    // 버튼 이벤트 리스너
+    prevMonthBtn.addEventListener('click', () => {
+        currentDate.setMonth(currentDate.getMonth() - 1);
+        renderCalendar();
+    });
+
+    nextMonthBtn.addEventListener('click', () => {
+        currentDate.setMonth(currentDate.getMonth() + 1);
+        renderCalendar();
+    });
+
+    renderCalendar();
+</script>
+
+</body>
+</html>
